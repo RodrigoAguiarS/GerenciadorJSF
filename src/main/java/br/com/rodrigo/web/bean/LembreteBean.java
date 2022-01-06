@@ -39,7 +39,7 @@ public class LembreteBean {
                 new FacesMessage("Lembrete adicionado com sucesso!"));
         context.getExternalContext().getFlash().setKeepMessages(true);
 
-        return "index.xhtml?faces-redirect=true";
+        return "home";
     }
     public String remover(){
         mapper.remover(lembrete);
@@ -50,7 +50,19 @@ public class LembreteBean {
         context.addMessage(null, new FacesMessage("Tarefa removida com sucesso"));
         context.getExternalContext().getFlash().setKeepMessages(true);
 
-        return "index.xhtml?faces-redirect=true";
+        return "home";
+    }
+    public String editar(){
+        mapper.editar(lembrete);
+
+        lembrete = new Lembrete();
+
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage("Tarefa editado com sucesso"));
+        context.getExternalContext().getFlash().setKeepMessages(true);
+
+        return "home";
+
     }
     public void lembretePorId() {
         lembrete = mapper.buscar(lembrete.getId());

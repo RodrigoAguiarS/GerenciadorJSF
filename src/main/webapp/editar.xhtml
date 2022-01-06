@@ -7,20 +7,23 @@
 <h:head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
-    <title>Adicionar Tarefa</title>
+    <title>Editar tarefa</title>
+
     <f:metadata>
-        <f:event type="preRenderView" listener="#{lembreteBean.init}"/>
+        <f:viewParam name="lembrete" value="#{lembreteBean.lembrete.id}"/>
+        <f:event type="preRenderView" listener="#{lembreteBean.lembretePorId}"/>
     </f:metadata>
 </h:head>
 <h:body>
-    <h3>Adicionar tarefa</h3>
-    <h:form>
+    <h1>Editar tarefa</h1>
+
+
+    <h:form rendered="#{lembreteBean.lembrete.id != 0}">
         <h:panelGrid columns="3">
             <h:outputLabel value="Título:"/>
             <h:inputText id="titulo" value="#{lembreteBean.lembrete.titulo}" required="true"
                          requiredMessage="Este campo é requerido">
                 <f:validateLength minimum="3" maximum="255"/>
-
             </h:inputText>
             <h:message for="titulo"/>
 
@@ -38,8 +41,10 @@
             </h:inputText>
             <h:message for="data-inicio"/>
         </h:panelGrid>
-        <h:commandButton value="Enviar" action="#{lembreteBean.adicionar}"/>
+
+        <h:commandButton value="Enviar" action="#{lembreteBean.editar}"/>
     </h:form>
+
     <h:link value="Voltar" outcome="home"/>
 </h:body>
 </html>
