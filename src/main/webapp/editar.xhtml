@@ -34,6 +34,18 @@
             </h:inputTextarea>
             <h:message for="descricao"/>
 
+            <h:outputLabel value="Responsável:"/>
+            <h:inputTextarea id="responsavel" value="#{lembreteBean.lembrete.responsavel}" required="true"
+                             requiredMessage="Este campo é requerido">
+                <f:validateLength minimum="3" maximum="255"/>
+            </h:inputTextarea>
+            <br/>
+            <h:outputLabel value="Prioridade:"/>
+            <h:inputTextarea id="prioridade" value="#{lembreteBean.lembrete.prioridade}" required="true"
+                             requiredMessage="Este campo é requerido">
+                <f:validateLength minimum="3" maximum="255"/>
+            </h:inputTextarea>
+            <br/>
             <h:outputLabel value="Início:"/>
             <h:inputText id="data-inicio" value="#{lembreteBean.lembrete.dataInicio}" required="true"
                          requiredMessage="Informe uma data, por exemplo 06/01/2022">

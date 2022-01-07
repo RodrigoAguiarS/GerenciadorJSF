@@ -5,10 +5,13 @@ import java.util.Date;
 public class Lembrete {
 
     private long id;
+    private String responsavel;
     private String titulo;
     private String descricao;
     private Date dataCadastro;
     private Date dataInicio;
+    private String prioridade;
+
 
     public Lembrete() {
 
@@ -52,5 +55,19 @@ public class Lembrete {
 
     public void setDataInicio(Date dataInicio) {
         this.dataInicio = dataInicio;
+    }
+
+    public String getResponsavel() {
+        return responsavel;
+    }
+    public void setResponsavel(String responsavel) {
+        this.responsavel = responsavel;
+    }
+    public String getPrioridade() {
+        return prioridade;
+    }
+
+    public void setPrioridade(String prioridade) {
+        this.prioridade = prioridade;
     }
 }

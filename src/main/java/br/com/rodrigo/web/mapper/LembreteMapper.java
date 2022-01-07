@@ -21,6 +21,8 @@ public class LembreteMapper {
         lembrete.setId(1L);
         lembrete.setTitulo("Comprar leite");
         lembrete.setDescricao("Hoje, 11h");
+        lembrete.setResponsavel("João");
+        lembrete.setPrioridade("Alta");
         lembrete.setDataCadastro(Date.from(agora));
         lembrete.setDataInicio(Date.from(agora));
 

@@ -36,7 +36,7 @@ public class LembreteBean {
 
         FacesContext context=FacesContext.getCurrentInstance();
         context.addMessage(null,
-                new FacesMessage("Lembrete adicionado com sucesso!"));
+                new FacesMessage("Tarefa adicionado com sucesso!"));
         context.getExternalContext().getFlash().setKeepMessages(true);
 
         return "home";

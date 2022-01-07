@@ -26,6 +26,14 @@
             #{lembrete.descricao}
         </h:column>
         <h:column>
+            <f:facet name="header">Responsável</f:facet>
+            #{lembrete.responsavel}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Prioridade</f:facet>
+            #{lembrete.prioridade}
+        </h:column>
+        <h:column>
             <f:facet name="header">Início</f:facet>
             <h:outputText value="#{lembrete.dataInicio.time}">
                 <f:convertDateTime pattern="dd/MM/yyyy"/>
