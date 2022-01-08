@@ -1,20 +1,20 @@
 package br.com.rodrigo.web.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.Date;
 
+@Entity
 public class Lembrete {
-
+    @Id
     private long id;
-    private String responsavel;
     private String titulo;
     private String descricao;
-    private Date dataCadastro;
-    private Date dataInicio;
+    private String responsavel;
     private String prioridade;
-
+    private Date data;
 
     public Lembrete() {
-
     }
 
     public long getId() {
@@ -41,33 +41,27 @@ public class Lembrete {
         this.descricao = descricao;
     }
 
-    public Date getDataCadastro() {
-        return dataCadastro;
-    }
-
-    public void setDataCadastro(Date dataCadastro) {
-        this.dataCadastro = dataCadastro;
-    }
-
-    public Date getDataInicio() {
-        return dataInicio;
-    }
-
-    public void setDataInicio(Date dataInicio) {
-        this.dataInicio = dataInicio;
-    }
-
     public String getResponsavel() {
         return responsavel;
     }
+
     public void setResponsavel(String responsavel) {
         this.responsavel = responsavel;
     }
+
     public String getPrioridade() {
         return prioridade;
     }
 
     public void setPrioridade(String prioridade) {
         this.prioridade = prioridade;
+    }
+
+    public Date getData() {
+        return data;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
     }
 }

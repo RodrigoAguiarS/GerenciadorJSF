@@ -23,8 +23,7 @@ public class LembreteMapper {
         lembrete.setDescricao("Hoje, 11h");
         lembrete.setResponsavel("João");
         lembrete.setPrioridade("Alta");
-        lembrete.setDataCadastro(Date.from(agora));
-        lembrete.setDataInicio(Date.from(agora));
+        lembrete.setData(Date.from(agora));
 
         adicionar(lembrete);
     }
@@ -38,7 +37,7 @@ public class LembreteMapper {
 
         Instant agora = LocalDate.now().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant();
         Date hoje = Date.from(agora);
-        lembrete.setDataCadastro(hoje);
+        lembrete.setData(hoje);
 
         lembretes.add(lembrete);
     }
