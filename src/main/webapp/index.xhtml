@@ -3,7 +3,9 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
 <h:head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
@@ -12,43 +14,43 @@
 <h:body>
     <h:messages/>
     <h:link value="Nova tarefa" outcome="adicionar"/>
-    <h:dataTable value="#{lembreteBean.lembretes}" var="lembrete">
-        <h:column>
+    <p:dataTable value="#{lembreteBean.lembretes}" var="lembrete">
+        <p:column>
             <f:facet name="header">#</f:facet>
             #{lembrete.id}
-        </h:column>
-        <h:column>
+        </p:column>
+        <p:column>
             <f:facet name="header">Título</f:facet>
             #{lembrete.titulo}
-        </h:column>
-        <h:column>
+        </p:column>
+        <p:column>
             <f:facet name="header">Descrição</f:facet>
             #{lembrete.descricao}
-        </h:column>
-        <h:column>
+        </p:column>
+        <p:column>
             <f:facet name="header">Responsável</f:facet>
             #{lembrete.responsavel}
-        </h:column>
-        <h:column>
+        </p:column>
+        <p:column>
             <f:facet name="header">Prioridade</f:facet>
-            #{lembrete.prioridade}
-        </h:column>
-        <h:column>
+            <h:outputText value="#{lembrete.prioridade}"/>
+        </p:column>
+        <p:column>
             <f:facet name="header">Data</f:facet>
             <h:outputText value="#{lembrete.data.time}">
                 <f:convertDateTime pattern="dd/MM/yyyy"/>
             </h:outputText>
-        </h:column>
-        <h:column>
+        </p:column>
+        <p:column>
             <h:link value="Editar" outcome="editar">
                 <f:param name="lembrete" value="#{lembrete.id}"/>
             </h:link>
-        </h:column>
-        <h:column>
-            <h:link value="Remover" outcome="remover">
+        </p:column>
+        <p:column>
+            <p:link value="Remover" outcome="remover">
                 <f:param name="lembrete" value="#{lembrete.id}"/>
-            </h:link>
-        </h:column>
-    </h:dataTable>
+            </p:link>
+        </p:column>
+    </p:dataTable>
 </h:body>
 </html>

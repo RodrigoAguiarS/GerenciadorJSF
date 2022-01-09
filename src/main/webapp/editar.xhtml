@@ -3,7 +3,8 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 <h:head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
@@ -20,41 +21,41 @@
 
     <h:form rendered="#{lembreteBean.lembrete.id != 0}">
         <h:panelGrid columns="3">
-            <h:outputLabel value="Título:"/>
-            <h:inputText id="titulo" value="#{lembreteBean.lembrete.titulo}" required="true"
+            <p:outputLabel value="Título:"/>
+            <p:inputText id="titulo" value="#{lembreteBean.lembrete.titulo}" required="true"
                          requiredMessage="Este campo é requerido">
                 <f:validateLength minimum="3" maximum="255"/>
-            </h:inputText>
+            </p:inputText>
             <h:message for="titulo"/>
 
-            <h:outputLabel value="Descrição:"/>
-            <h:inputTextarea id="descricao" value="#{lembreteBean.lembrete.descricao}" required="true"
+            <p:outputLabel value="Descrição:"/>
+            <p:inputTextarea id="descricao" value="#{lembreteBean.lembrete.descricao}" required="true"
                              requiredMessage="Este campo é requerido">
                 <f:validateLength minimum="3" maximum="255"/>
-            </h:inputTextarea>
+            </p:inputTextarea>
             <h:message for="descricao"/>
 
-            <h:outputLabel value="Responsável:"/>
-            <h:inputTextarea id="responsavel" value="#{lembreteBean.lembrete.responsavel}" required="true"
+            <p:outputLabel value="Responsável:"/>
+            <p:inputText id="responsavel" value="#{lembreteBean.lembrete.responsavel}" required="true"
                              requiredMessage="Este campo é requerido">
                 <f:validateLength minimum="3" maximum="255"/>
-            </h:inputTextarea>
+            </p:inputText>
             <br/>
-            <h:outputLabel value="Prioridade:"/>
-            <h:inputTextarea id="prioridade" value="#{lembreteBean.lembrete.prioridade}" required="true"
+            <p:outputLabel value="Prioridade:"/>
+            <p:inputText id="prioridade" value="#{lembreteBean.lembrete.prioridade}" required="true"
                              requiredMessage="Este campo é requerido">
                 <f:validateLength minimum="3" maximum="255"/>
-            </h:inputTextarea>
-            <br/>
-            <h:outputLabel value="Data"/>
-            <h:inputText id="data" value="#{lembreteBean.lembrete.data}" required="true"
+            </p:inputText>
+            <h:message for="prioridade"/>
+            <p:outputLabel value="Data"/>
+            <p:inputText id="data" value="#{lembreteBean.lembrete.data}" required="true"
                          requiredMessage="Informe uma data, por exemplo 06/01/2022">
                 <f:convertDateTime pattern="dd/MM/yyyy" timeZone="#{initParam.timezone}"/>
-            </h:inputText>
+            </p:inputText>
             <h:message for="data"/>
         </h:panelGrid>
 
-        <h:commandButton value="Enviar" action="#{lembreteBean.editar}"/>
+        <p:commandButton value="Enviar" action="#{lembreteBean.editar}"/>
     </h:form>
 
     <h:link value="Voltar" outcome="home"/>

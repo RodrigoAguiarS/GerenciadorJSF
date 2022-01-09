@@ -1,8 +1,10 @@
 package br.com.rodrigo.web.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
 import java.util.Date;
+
+
+import javax.persistence.*;
+
 
 @Entity
 public class Lembrete {
@@ -13,6 +15,15 @@ public class Lembrete {
     private String responsavel;
     private String prioridade;
     private Date data;
+
+
+    public String getPrioridade() {
+        return prioridade;
+    }
+
+    public void setPrioridade(String prioridade) {
+        this.prioridade = prioridade;
+    }
 
     public Lembrete() {
     }
@@ -49,13 +60,7 @@ public class Lembrete {
         this.responsavel = responsavel;
     }
 
-    public String getPrioridade() {
-        return prioridade;
-    }
 
-    public void setPrioridade(String prioridade) {
-        this.prioridade = prioridade;
-    }
 
     public Date getData() {
         return data;

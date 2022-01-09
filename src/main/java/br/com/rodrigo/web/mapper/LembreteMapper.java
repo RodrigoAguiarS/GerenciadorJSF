@@ -16,13 +16,13 @@ public class LembreteMapper {
     public LembreteMapper() {
         Instant agora = LocalDate.now().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant();
 
-        //lembrete de comprar leite de forma inlustrativa, aqui seria o banco de dados.
+        //lembrete de comprar leite de forma inlustrativa.
         Lembrete lembrete = new Lembrete();
         lembrete.setId(1L);
-        lembrete.setTitulo("Comprar leite");
+        lembrete.setTitulo("Ir ao Médico");
         lembrete.setDescricao("Hoje, 11h");
-        lembrete.setResponsavel("João");
         lembrete.setPrioridade("Alta");
+        lembrete.setResponsavel("João");
         lembrete.setData(Date.from(agora));
 
         adicionar(lembrete);
