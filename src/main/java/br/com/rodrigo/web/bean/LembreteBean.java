@@ -50,7 +50,7 @@ public class LembreteBean {
             lembretes = lembreteDao.listarTodos();
 
             FacesContext context = FacesContext.getCurrentInstance();
-            context.addMessage(null, new FacesMessage("Lembrete adicionado com sucesso!"));
+            context.addMessage(null, new FacesMessage("Tarefa adicionado com sucesso!"));
             context.getExternalContext().getFlash().setKeepMessages(true);
         } catch (Exception e) {
             FacesContext context = FacesContext.getCurrentInstance();
@@ -68,7 +68,7 @@ public class LembreteBean {
             lembretes = lembreteDao.listarTodos();
 
             FacesContext context = FacesContext.getCurrentInstance();
-            context.addMessage(null, new FacesMessage("Lembrete editado com sucesso!"));
+            context.addMessage(null, new FacesMessage("Tarefa editado com sucesso!"));
             context.getExternalContext().getFlash().setKeepMessages(true);
         } catch (Exception e) {
             FacesContext context = FacesContext.getCurrentInstance();
@@ -86,7 +86,7 @@ public class LembreteBean {
             lembretes = lembreteDao.listarTodos();
 
             FacesContext context = FacesContext.getCurrentInstance();
-            context.addMessage(null, new FacesMessage("Lembrete removido com sucesso!"));
+            context.addMessage(null, new FacesMessage("Tarefa removido com sucesso!"));
             context.getExternalContext().getFlash().setKeepMessages(true);
         } catch (Exception e) {
             FacesContext context = FacesContext.getCurrentInstance();
@@ -104,7 +104,7 @@ public class LembreteBean {
             if (lembrete == null || lembrete.getId() == 0) {
                 lembrete = new Lembrete();
 
-                throw new Exception("Lembrete não encontrado.");
+                throw new Exception("Tarefa não encontrado.");
             }
         } catch (Exception e) {
             FacesMessage message = new FacesMessage(e.getMessage());
