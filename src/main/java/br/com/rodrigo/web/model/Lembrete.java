@@ -4,18 +4,49 @@ import java.util.Date;
 
 
 import javax.persistence.*;
-
+import javax.validation.constraints.Size;
 
 @Entity
 public class Lembrete {
-    @Id
-    private long id;
-    private String titulo;
-    private String descricao;
-    private String responsavel;
-    private String prioridade;
-    private Date data;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    @Size(min = 3, max = 255)
+    @Column(nullable = false)
+    private String titulo;
+
+    @Size(min = 3, max = 255)
+    @Column(nullable = false)
+    private String descricao;
+
+    @Temporal(TemporalType.DATE)
+    @Column(nullable = false)
+    private Date inicio;
+
+    @Temporal(TemporalType.DATE)
+    @Column(nullable = false)
+    private Date criacao = new Date();
+
+    @Size(min = 3, max = 255)
+    @Column(nullable = false)
+    private String prioridade;
+
+    @Size(min = 3, max = 255)
+    @Column(nullable = false)
+    private String responsavel;
+
+    public Lembrete() {
+    }
+
+    public String getResponsavel() {
+        return responsavel;
+    }
+
+    public void setResponsavel(String responsavel) {
+        this.responsavel = responsavel;
+    }
 
     public String getPrioridade() {
         return prioridade;
@@ -23,9 +54,6 @@ public class Lembrete {
 
     public void setPrioridade(String prioridade) {
         this.prioridade = prioridade;
-    }
-
-    public Lembrete() {
     }
 
     public long getId() {
@@ -52,21 +80,20 @@ public class Lembrete {
         this.descricao = descricao;
     }
 
-    public String getResponsavel() {
-        return responsavel;
+    public Date getInicio() {
+        return inicio;
     }
 
-    public void setResponsavel(String responsavel) {
-        this.responsavel = responsavel;
+    public void setInicio(Date inicio) {
+        this.inicio = inicio;
     }
 
-
-
-    public Date getData() {
-        return data;
+    public Date getCriacao() {
+        return criacao;
     }
 
-    public void setData(Date data) {
-        this.data = data;
+    public void setCriacao(Date criacao) {
+        this.criacao = criacao;
     }
+
 }

@@ -9,7 +9,7 @@ public class JpaResourceBean {
 
     public static EntityManagerFactory getEntityManagerFactory() {
         if (entityManagerFactory == null) {
-            entityManagerFactory = Persistence.createEntityManagerFactory("lembrete");
+            entityManagerFactory = Persistence.createEntityManagerFactory("Lembrete");
         }
         return entityManagerFactory;
     }

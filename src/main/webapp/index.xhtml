@@ -5,15 +5,18 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
-
 <h:head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
-    <title>Gerenciador em JSF</title>
+    <title>CRUD com JSF/JPA</title>
 </h:head>
 <h:body>
-    <h:messages/>
-    <h:link value="Nova tarefa" outcome="adicionar"/>
+    <h1>Listagem de lembretes</h1>
+
+    <h:messages globalOnly="true"/>
+
+    <h:link value="Novo lembrete" outcome="adicionar"/>
+
     <p:dataTable value="#{lembreteBean.lembretes}" var="lembrete">
         <p:column>
             <f:facet name="header">#</f:facet>
@@ -28,28 +31,29 @@
             #{lembrete.descricao}
         </p:column>
         <p:column>
-            <f:facet name="header">Responsável</f:facet>
+            <f:facet name="header">Responsavel</f:facet>
             #{lembrete.responsavel}
         </p:column>
         <p:column>
-            <f:facet name="header">Prioridade</f:facet>
-            <h:outputText value="#{lembrete.prioridade}"/>
-        </p:column>
-        <p:column>
-            <f:facet name="header">Data</f:facet>
-            <h:outputText value="#{lembrete.data.time}">
+            <f:facet name="header">Início</f:facet>
+            <h:outputText value="#{lembrete.inicio.time}">
                 <f:convertDateTime pattern="dd/MM/yyyy"/>
             </h:outputText>
         </p:column>
+        <p:column>
+            <f:facet name="header">Prioridade</f:facet>
+            #{lembrete.prioridade}
+        </p:column>
+
         <p:column>
             <h:link value="Editar" outcome="editar">
                 <f:param name="lembrete" value="#{lembrete.id}"/>
             </h:link>
         </p:column>
         <p:column>
-            <p:link value="Remover" outcome="remover">
+            <h:link value="Remover" outcome="remover">
                 <f:param name="lembrete" value="#{lembrete.id}"/>
-            </p:link>
+            </h:link>
         </p:column>
     </p:dataTable>
 </h:body>

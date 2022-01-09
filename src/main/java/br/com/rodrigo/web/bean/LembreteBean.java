@@ -1,78 +1,116 @@
 package br.com.rodrigo.web.bean;
 
-import br.com.rodrigo.web.mapper.LembreteMapper;
+
+import br.com.rodrigo.web.dao.LembreteDao;
 import br.com.rodrigo.web.model.Lembrete;
 
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import java.util.List;
 
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class LembreteBean {
+
     private Lembrete lembrete;
-    private LembreteMapper mapper = new LembreteMapper();
+    private LembreteDao lembreteDao;
+    private List<Lembrete> lembretes;
 
     @PostConstruct
     public void init() {
+        lembreteDao = new LembreteDao();
         lembrete = new Lembrete();
+
+        try {
+            lembretes = lembreteDao.listarTodos();
+        } catch (Exception e) {
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), e.getMessage()));
+            context.getExternalContext().getFlash().setKeepMessages(true);
+        }
     }
 
     public Lembrete getLembrete() {
         return lembrete;
     }
+
     public List<Lembrete> getLembretes() {
-        return mapper.getLembretes();
-
+        return lembretes;
     }
-    public String adicionar(){
-        mapper.adicionar(lembrete);
 
-        lembrete = new Lembrete();
+    public String inserir() {
+        try {
+            lembreteDao.inserir(lembrete);
 
-        FacesContext context=FacesContext.getCurrentInstance();
-        context.addMessage(null,
-                new FacesMessage("Tarefa adicionado com sucesso!"));
-        context.getExternalContext().getFlash().setKeepMessages(true);
+            lembretes = lembreteDao.listarTodos();
+
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage("Lembrete adicionado com sucesso!"));
+            context.getExternalContext().getFlash().setKeepMessages(true);
+        } catch (Exception e) {
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), e.getMessage()));
+            context.getExternalContext().getFlash().setKeepMessages(true);
+        }
 
         return "home";
     }
-    public String remover(){
-        mapper.remover(lembrete);
 
-        lembrete = new Lembrete();
+    public String atualizar() {
+        try {
+            lembreteDao.atualizar(lembrete);
 
-        FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage("Tarefa removida com sucesso"));
-        context.getExternalContext().getFlash().setKeepMessages(true);
+            lembretes = lembreteDao.listarTodos();
+
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage("Lembrete editado com sucesso!"));
+            context.getExternalContext().getFlash().setKeepMessages(true);
+        } catch (Exception e) {
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), e.getMessage()));
+            context.getExternalContext().getFlash().setKeepMessages(true);
+        }
 
         return "home";
     }
-    public String editar(){
-        mapper.editar(lembrete);
 
-        lembrete = new Lembrete();
+    public String excluir() {
+        try {
+            lembreteDao.excluir(lembrete.getId());
 
-        FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage("Tarefa editado com sucesso"));
-        context.getExternalContext().getFlash().setKeepMessages(true);
+            lembretes = lembreteDao.listarTodos();
+
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage("Lembrete removido com sucesso!"));
+            context.getExternalContext().getFlash().setKeepMessages(true);
+        } catch (Exception e) {
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), e.getMessage()));
+            context.getExternalContext().getFlash().setKeepMessages(true);
+        }
 
         return "home";
-
     }
-    public void lembretePorId() {
-        lembrete = mapper.buscar(lembrete.getId());
 
-        if (lembrete == null || lembrete.getId() == 0){
-            lembrete = new Lembrete();
+    public void selecionar() {
+        try {
+            lembrete = lembreteDao.selecionar(lembrete.getId());
 
-            FacesMessage message = new FacesMessage("Tarefa não encontrada.");
+            if (lembrete == null || lembrete.getId() == 0) {
+                lembrete = new Lembrete();
+
+                throw new Exception("Lembrete não encontrado.");
+            }
+        } catch (Exception e) {
+            FacesMessage message = new FacesMessage(e.getMessage());
             message.setSeverity(FacesMessage.SEVERITY_ERROR);
             FacesContext.getCurrentInstance().addMessage(null, message);
         }
+
     }
 }
